@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffcccb;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+        h1 {
+            color: #d63447;
+            font-size: 3em;
+        }
+        p {
+            color: #333;
+            font-size: 1.5em;
+        }
+        .buttons {
+            margin-top: 30px;
+        }
+        .button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        #yesButton {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #noButton {
+            background-color: #f44336;
+            color: white;
+            position: relative;
+        }
+        .celebration {
+            display: none;
+            font-size: 2em;
+            color: #d63447;
+            margin-top: 20px;
+        }
+        .gif-container {
+            margin-top: 20px;
+        }
+        .gif-container img {
+            width: 200px;
+            border-radius: 10px;
+            margin: 10px;
+        }
+        .confirmation {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Will You Be My Valentine?</h1>
+    <p>My love, will you make me the happiest person and be my Valentine?</p>
+    <div class="gif-container">
+        <img src="https://media.giphy.com/media/3o7aTskHEUdgCQAXde/giphy.gif" alt="Heart GIF">
+        <img src="https://media.giphy.com/media/26FLdmIp6wJr91JAI/giphy.gif" alt="Romantic GIF">
+    </div>
+    <div class="buttons">
+        <button id="yesButton" class="button">Yes</button>
+        <button id="noButton" class="button">No</button>
+    </div>
+    <div id="celebration" class="celebration">Yay! You made my day! 💖</div>
+    <div id="confirmation" class="confirmation">
+        <p>Are you sure?</p>
+        <button id="yesConfirm" class="button">Yes, I'm sure!</button>
+        <button id="noConfirm" class="button">Wait, no!</button>
+    </div>
+
+    <script>
+        const noButton = document.getElementById('noButton');
+        const yesButton = document.getElementById('yesButton');
+        const celebration = document.getElementById('celebration');
+        const confirmation = document.getElementById('confirmation');
+        const yesConfirm = document.getElementById('yesConfirm');
+        const noConfirm = document.getElementById('noConfirm');
+
+        noButton.addEventListener('click', () => {
+            const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+            noButton.style.position = 'absolute';
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        });
+
+        yesButton.addEventListener('click', () => {
+            confirmation.style.display = 'block';
+            yesButton.style.display = 'none';
+            noButton.style.display = 'none';
+        });
+
+        yesConfirm.addEventListener('click', () => {
+            celebration.style.display = 'block';
+            confirmation.style.display = 'none';
+            document.body.style.backgroundColor = '#ffebee';
+            document.querySelector('.gif-container').innerHTML = `
+                <img src="https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif" alt="Celebration GIF">
+                <img src="https://media.giphy.com/media/l4FGpP4lxGGgK5CBW/giphy.gif" alt="Celebration GIF">
+            `;
+        });
+
+        noConfirm.addEventListener('click', () => {
+            confirmation.style.display = 'none';
+            yesButton.style.display = 'inline-block';
+            noButton.style.display = 'inline-block';
+        });
+    </script>
+</body>
+</html>
